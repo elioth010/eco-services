@@ -8,8 +8,10 @@ import com.ecoevents.restful.bs.service.hibernate.LoginService;
 public class LoginServiceImpl extends AbstractServiceHibernateImpl implements LoginService{
 
 	@Override
-	public void login() {
+	public Boolean login() {
 		System.out.println("Make Login");
+		//findBySQLQuery("Select * FROM ", clazz, parametros)
+		return false;
 	}
 
 }

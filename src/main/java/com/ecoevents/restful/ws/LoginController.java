@@ -23,6 +23,7 @@ public class LoginController implements Serializable {
 	
 	@RequestMapping(value = "test", method = RequestMethod.GET)
 	public String testLogin(){
+		loginService.login();
 		return "{helo: \"this is a rest test\"}";
 	}
 

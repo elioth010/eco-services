@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 import org.hibernate.transform.Transformers;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ecoevents.restful.bs.dao.AbstractDaoHibernate;
 import com.ecoevents.restful.eis.bo.base.BaseEntity;
@@ -34,38 +35,45 @@ public class AbstractDaoHibernateImpl implements AbstractDaoHibernate{
 		this.session = session;
 	}
 
+	@Transactional
 	@Override
 	public <T> BaseEntity save(BaseEntity baseEntity) {
 		this.getSession().save(baseEntity);
 		return baseEntity;
 	}
 
+	@Transactional
 	@Override
 	public void update(BaseEntity baseEntity) {
 		this.getSession().update(baseEntity);
 	}
 
+	@Transactional
 	@Override
 	public void delete(BaseEntity baseEntity) {
 		this.getSession().delete(baseEntity);
 	}
 
+	@Transactional
 	@Override
 	public <T> BaseEntity findWithGet(Class<? extends BaseEntity> clazz, Integer id) {
 		return (BaseEntity) this.getSession().get(clazz, id);
 	}
 
+	@Transactional
 	@Override
 	public <T> BaseEntity findWithLoad(Class<? extends BaseEntity> clazz, Integer id) {
 		return (BaseEntity) this.getSession().load(clazz, id);
 	}
 
+	@Transactional
 	@SuppressWarnings({ "unchecked" })
 	@Override
 	public <T> List<T> findAll(Class<? extends BaseEntity> clazz) {
 		return this.getSession().createQuery(FROM + " " + clazz.getName()).list();
 	}
 
+	@Transactional
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T> List<T> find(BaseEntity baseEntity) {
@@ -74,6 +82,7 @@ public class AbstractDaoHibernateImpl implements AbstractDaoHibernate{
 		return criteria.list();
 	}
 
+	@Transactional
 	@SuppressWarnings({ "unchecked" })
 	@Override
 	public <T> List<T> findByQuery(String query, Class<? extends BaseEntity> clazz, ListaParametrosDTO parametros) {
@@ -86,6 +95,7 @@ public class AbstractDaoHibernateImpl implements AbstractDaoHibernate{
 		return querySQL.list();
 	}
 
+	@Transactional
 	@SuppressWarnings({ "unchecked" })
 	@Override
 	public <T> List<T> findBySQLQuery(String query, Class<? extends BaseEntity> clazz, ListaParametrosDTO parametros) {
@@ -97,6 +107,7 @@ public class AbstractDaoHibernateImpl implements AbstractDaoHibernate{
 		return querySQL.list();
 	}
 
+	@Transactional
 	@Override
 	public <T> BaseEntity findById(Class<? extends BaseEntity> clazz, Integer id) {
 		return findWithGet(clazz, id);
