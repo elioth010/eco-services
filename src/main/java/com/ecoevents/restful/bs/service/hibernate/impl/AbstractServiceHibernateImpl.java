@@ -5,6 +5,7 @@ package com.ecoevents.restful.bs.service.hibernate.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ecoevents.restful.bs.dao.AbstractDaoHibernate;
@@ -19,6 +20,7 @@ import com.ecoevents.restful.util.persistence.ListaParametrosDTO;
 @Service
 public class AbstractServiceHibernateImpl implements AbstractServiceHibernate {
 
+	@Autowired
 	private AbstractDaoHibernate abstractDaoHibernate;
 
 	@Override

@@ -11,6 +11,20 @@ public class Parametro {
 	public Parametro() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public Parametro(String name, String value, Type type) {
+		super();
+		this.name = name;
+		this.value = value;
+		this.type = type;
+	}
+	
+	
+	public Parametro(String name, String value) {
+		super();
+		this.name = name;
+		this.value = value;
+	}
 
 	/**
 	 * @return the name
@@ -56,5 +70,6 @@ public class Parametro {
 	public void setType(Type type) {
 		this.type = type;
 	}
+
 
 }

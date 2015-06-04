@@ -22,18 +22,6 @@ public class AbstractDaoHibernateImpl implements AbstractDaoHibernate{
 
 	protected SessionFactory session;
 	private static final String FROM = "from";
-	
-	public Session getSession() {
-		return this.getSessionFactory().getCurrentSession();
-	}
-
-	public SessionFactory getSessionFactory() {
-		return session;
-	}
-
-	public void setSessionFactory(SessionFactory session) {
-		this.session = session;
-	}
 
 	@Transactional
 	@Override
@@ -82,6 +70,18 @@ public class AbstractDaoHibernateImpl implements AbstractDaoHibernate{
 		return criteria.list();
 	}
 
+	public Session getSession() {
+		return this.getSessionFactory().getCurrentSession();
+	}
+
+	public SessionFactory getSessionFactory() {
+		return session;
+	}
+
+	public void setSessionFactory(SessionFactory session) {
+		this.session = session;
+	}
+
 	@Transactional
 	@SuppressWarnings({ "unchecked" })
 	@Override
@@ -89,9 +89,8 @@ public class AbstractDaoHibernateImpl implements AbstractDaoHibernate{
 		Query querySQL = this.getSession().getNamedQuery(query);
 		List<Parametro> listParametros = parametros.getParametros();
 		for (Parametro param : listParametros) {
-			querySQL.setParameter(param.getName(), param.getValue(), param.getType());
+			querySQL.setParameter(param.getName(), param.getValue());
 		}
-		querySQL.setResultTransformer(Transformers.aliasToBean(clazz));
 		return querySQL.list();
 	}
 
