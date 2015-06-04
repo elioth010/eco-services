@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+      http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+      http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<!-- TRANSACTION PROXY -->
+	<bean id="transactionProxyFactory" name="transactionProxyFactory"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
+		abstract="true">
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="transactionAttributes">
+			<props>
+				<prop key="*">PROPAGATION_SUPPORTS,readOnly,-Throwable</prop>
+				<prop key="find*">PROPAGATION_REQUIRED, -Throwable</prop>
+				<prop key="save*">PROPAGATION_REQUIRED, -Throwable</prop>
+				<prop key="update*">PROPAGATION_REQUIRED, -Throwable</prop>
+				<prop key="delete*">PROPAGATION_REQUIRED, -Throwable</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="hibernateService" name="hibernateService" parent="transactionProxyFactory">
+		<property name="target" ref="hibernateServiceTarget" />
+	</bean>
+
+	<bean id="hibernateServiceTarget" class="com.ecoevents.restful.bs.service.hibernate.impl.AbstractServiceHibernateImpl" scope="prototype">
+		<property name="abstractDaoHibernate" ref="hibernateDao" />
+	</bean>
+	
+</beans>
