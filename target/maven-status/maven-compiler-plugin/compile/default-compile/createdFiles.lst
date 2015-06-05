@@ -1,10 +1,10 @@
 com/ecoevents/restful/bs/service/hibernate/LoginService.class
 com/ecoevents/restful/util/persistence/ListaParametrosDTO.class
 com/ecoevents/restful/bs/service/hibernate/impl/LoginServiceImpl.class
-com/ecoevents/restful/ws/LoginController.class
-com/ecoevents/restful/eis/bo/base/BaseEntity.class
 com/ecoevents/restful/bs/dao/impl/AbstractDaoHibernateImpl.class
-com/ecoevents/restful/bs/service/hibernate/AbstractServiceHibernate.class
-com/ecoevents/restful/util/persistence/Parametro.class
+com/ecoevents/restful/eis/bo/base/BaseEntity.class
 com/ecoevents/restful/bs/service/hibernate/impl/AbstractServiceHibernateImpl.class
 com/ecoevents/restful/bs/dao/AbstractDaoHibernate.class
+com/ecoevents/restful/ws/LoginController.class
+com/ecoevents/restful/bs/service/hibernate/AbstractServiceHibernate.class
+com/ecoevents/restful/util/persistence/Parametro.class
