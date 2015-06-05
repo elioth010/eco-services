@@ -3,6 +3,8 @@ package com.ecoevents.restful.bs.service.hibernate.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.ecoevents.restful.bs.service.hibernate.RateService;
@@ -63,20 +65,20 @@ public class RateServiceImpl extends AbstractServiceHibernateImpl implements Rat
 	}
 
 	@Override
-	public RateDTO showRate(Integer eventId) {
+	public ResponseEntity<RateDTO> showRate(Integer eventId) {
 		ListaParametrosDTO listaParametrosDTO = new ListaParametrosDTO();
 		listaParametrosDTO.getParametros().add(new Parametro(EVENT_ID, String.valueOf(eventId)));
-		return new RateDTO((Rate) findByQuery(GET_RATE, Rate.class, listaParametrosDTO).get(0));
+		return new ResponseEntity<RateDTO>(new RateDTO((Rate) findByQuery(GET_RATE, Rate.class, listaParametrosDTO).get(0)),HttpStatus.OK);
 	}
 
 	@Override
-	public List<RateDTO> getAllRates() {
+	public ResponseEntity<List<RateDTO>> getAllRates() {
 		List<RateDTO> ratesDTO = new ArrayList<RateDTO>();
 		List<Rate> rates = findAll(Rate.class); 
 		for(Rate Rate : rates){
 			RateDTO dto = new RateDTO(Rate);
 			ratesDTO.add(dto);
 		}
-		return ratesDTO;
+		return new ResponseEntity<List<RateDTO>>(ratesDTO,HttpStatus.OK);
 	}
 }
