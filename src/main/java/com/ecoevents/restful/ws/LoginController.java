@@ -31,7 +31,7 @@ public class LoginController implements Serializable {
 	}
 	
 	@RequestMapping(value="login", method= RequestMethod.POST)
-	public ResponseEntity<UserDTO> makeLogin(@RequestParam(required=true) String username, @RequestParam(required=true) String password){
+	public ResponseEntity<UserDTO> makeLogin(@RequestParam(value="username",required=true) String username, @RequestParam(value="password",required=true) String password){
 		return getLoginService().login(username, password);
 	}
 	
