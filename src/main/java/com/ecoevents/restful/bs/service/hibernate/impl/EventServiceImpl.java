@@ -17,7 +17,7 @@ public class EventServiceImpl extends AbstractServiceHibernateImpl implements Ev
 
 	@Override
 	public Boolean createEvent(EventDTO event) {
-		User user = new User(null, event.getUserCreated().getUsername(), event.getUserCreated().getPassword(), event.getUserCreated().getName(), event.getUserCreated().getEmail(), event.getUserCreated().getAge());
+		User user = (User) findById(User.class, event.getUserCreated().getId());
 		Event createdEvent = new Event(null, user, event.getName(), event.getDescription(), event.getDate(), event.getPlace());
 		try{
 			save(createdEvent);
