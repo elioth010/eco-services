@@ -6,6 +6,7 @@ package com.ecoevents.restful.eis.bo;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,7 +27,7 @@ import com.ecoevents.restful.eis.bo.base.BaseEntity;
 @Table(name="event")
 public class Event extends BaseEntity implements Serializable {
 
-	/**
+	/**constraint
 	 * 
 	 */
 	private static final long serialVersionUID = 4113578073617494074L;
@@ -35,8 +36,8 @@ public class Event extends BaseEntity implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column
 	private Integer id;
-	@JoinColumn(name="created_by")
-	@ManyToOne(targetEntity=User.class, fetch=FetchType.EAGER)
+	@JoinColumn(name="created_by", insertable=true)
+	@ManyToOne(targetEntity=User.class, fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private User userCreated;
 	@Column
 	private String name;

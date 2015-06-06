@@ -19,6 +19,7 @@ public class EventServiceImpl extends AbstractServiceHibernateImpl implements Ev
 	public Boolean createEvent(EventDTO event) {
 		User user = (User) findById(User.class, event.getUserCreated().getId());
 		Event createdEvent = new Event(null, user, event.getName(), event.getDescription(), event.getDate(), event.getPlace());
+		System.out.println("Evento a guardar: "+createdEvent);
 		try{
 			save(createdEvent);
 		}catch(Exception e){

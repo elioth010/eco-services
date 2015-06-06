@@ -13,9 +13,9 @@ public class RateID implements Serializable{
 	 */
 	private static final long serialVersionUID = 5933442167619156991L;
 	
-	@Column(name="id_event")
+	@Column(name="id_event",insertable=true)
 	private Event event;
-	@Column(name="id_user")
+	@Column(name="id_user",insertable=true)
 	private User user;
 	
 	public RateID() {
