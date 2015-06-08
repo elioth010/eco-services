@@ -2,8 +2,11 @@ package com.ecoevents.restful.eis.bo;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Embeddable;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Embeddable
 public class RateID implements Serializable{
@@ -13,9 +16,11 @@ public class RateID implements Serializable{
 	 */
 	private static final long serialVersionUID = 5933442167619156991L;
 	
-	@Column(name="id_event",insertable=true)
+	@JoinColumn(name="id_event", insertable=true)
+	@ManyToOne(targetEntity=Event.class, fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private Event event;
-	@Column(name="id_user",insertable=true)
+	@JoinColumn(name="id_user", insertable=true)
+	@ManyToOne(targetEntity=User.class, fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private User user;
 	
 	public RateID() {
